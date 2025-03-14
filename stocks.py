@@ -5,17 +5,9 @@ import pandas as pd
 
 from settings import *
 
-# Настраиваем логирование
-logging.basicConfig(
-    filename="logs/update_stocks.log",  # Файл для логов
-    level=logging.INFO,            # Уровень логирования
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S"
-)
-
 
 class FakeResponse:
-    def __init__(self, status_code=500, json_data=None):
+    def __init__(self, status_code=200, json_data=None):
         self.status_code = status_code
         self._json = json_data or {"message": "Тестовый ответ"}
         self.text = "Тестовый ответ"
@@ -188,10 +180,10 @@ def update_stocks(api_token, campaign_id, offers):
 
 
 
-def main():
+def start_exchange_stock():
     offers = prepare_offers_data(OFFERS_FILE)
     update_stocks(API_TOKEN, CAMPAIGN_ID, offers)
 
 
 if __name__ == "__main__":
-    main()
+    start_exchange_stock()

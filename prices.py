@@ -6,16 +6,9 @@ import pandas as pd
 
 from settings import *
 
-# Настраиваем логирование
-logging.basicConfig(
-    filename="logs/update_prices.log",  # Файл для логов
-    level=logging.INFO,            # Уровень логирования
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S"
-)
 
 class FakeResponse:
-    def __init__(self, status_code=401, json_data=None):
+    def __init__(self, status_code=200, json_data=None):
         self.status_code = status_code
         self._json = json_data or {"message": "Тестовый ответ"}
         self.text = "Тестовый ответ"
@@ -199,10 +192,10 @@ def update_prices(api_token, business_id, offers):
 
 
 
-def main():
-    offers = prepare_offers_data(OFFERS_FILE_TEST, MARKUP_FILE)
+def start_exchange_price():
+    offers = prepare_offers_data(OFFERS_FILE, MARKUP_FILE)
     update_prices(API_TOKEN, BUSINESS_ID, offers)
 
 
 if __name__ == "__main__":
-    main()
+    start_exchange_price()
