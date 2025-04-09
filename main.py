@@ -7,7 +7,7 @@ from stocks import start_exchange_stock
 from prices import start_exchange_price
 
 logging.basicConfig(
-    filename="exchange.log",  # Файл для логов
+    filename=f"{BASE_DIR}/exchange.log",  # Файл для логов
     level=logging.INFO,            # Уровень логирования
     format="%(asctime)s - %(levelname)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"

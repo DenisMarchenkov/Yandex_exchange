@@ -167,5 +167,5 @@ def save_to_csv_products(business_id, api_token, limit=20, page_token=None, offe
     print(f"✅ Данные успешно сохранены в файл {filename}")
 
 
-pprint(get_products(BUSINESS_ID, API_TOKEN, limit=1, offer_ids=["5641"]))
+pprint(get_products(BUSINESS_ID, API_TOKEN, limit=1, offer_ids=['13458']))
 #save_to_csv_products(BUSINESS_ID, API_TOKEN)

@@ -5,8 +5,8 @@ import time
 import datetime
 
 
-def download_from_ftp(server, username, password, filename, local_directory, max_retries=3, retry_delay=5):
-    remote_directory = "/"  # Корневая директория на сервере
+def download_from_ftp(server, username, password, filename, local_directory, max_retries=3, retry_delay=5, remote_directory = "/"):
+    # remote_directory = "/"  # Корневая директория на сервере
 
     attempt = 0
     while attempt < max_retries:

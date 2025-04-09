@@ -8,6 +8,7 @@ __pycache__/
 
 # Другие игнорируемые файлы
 Suppler_price/
+orders_dbf/
 settings.py
 *.xlsx
 *.xls
