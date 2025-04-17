@@ -9,7 +9,11 @@ __pycache__/
 # Другие игнорируемые файлы
 Suppler_price/
 orders_dbf/
+confirmation_xls/
+labels_pdf/
+recaps_xlsx/
 settings.py
+test.py
 *.xlsx
 *.xls
 *.log

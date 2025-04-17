@@ -1,12 +1,10 @@
 import ftplib
-import os
 import requests
 import dbf
 
 from pprint import pprint
 from datetime import datetime
-from settings import CAMPAIGN_ID, API_TOKEN, CUSTOMER_ID_IN_SUPPLIER_CRM, DIVISION_ID, ORDERS_DIR, SERVER, USER_NAME, PASSWORD, STORE
-
+from settings import *
 
 def get_orders(campaign_id, api_token, limit=20, page_token=None, offer_ids=None):
     url = f"https://api.partner.market.yandex.ru/campaigns/{campaign_id}/orders"
@@ -199,10 +197,16 @@ def upload_file_to_ftp(server, username, password, store, local_path_file):
 
 def main():
     orders = get_orders(CAMPAIGN_ID, API_TOKEN)
-    data_orders = extract_order_data(orders)
-
+    # data_orders = extract_order_data(orders)
     export_orders_to_dbf_files(orders, output_dir=ORDERS_DIR)
 
+
+    # for root, dirs, files in os.walk(ORDERS_DIR):
+    #     for file in files:
+    #         if file.endswith('.dbf'):
+    #             filepath = os.path.join(root, file)
+    #             #print(os.path.join(root, file))
+    #             upload_file_to_ftp(SERVER, USER_NAME, PASSWORD, STORE, filepath)
 if __name__ == '__main__':
     main()
 
