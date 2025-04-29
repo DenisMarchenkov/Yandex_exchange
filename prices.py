@@ -122,8 +122,8 @@ def send_request_with_retries(url, headers, body, max_attempts=3):
 
     while attempt < max_attempts:
         try:
-            #response = requests.post(url, headers=headers, json=body)
-            response = FakeResponse()
+            response = requests.post(url, headers=headers, json=body)
+            #response = FakeResponse()
 
             # ✅ Если всё ок, возвращаем результат
             if response.status_code == 200:
@@ -155,16 +155,18 @@ def send_request_with_retries(url, headers, body, max_attempts=3):
     return None  # Если после всех попыток не удалось отправить
 
 
-def update_prices(api_token, business_id, offers):
+def update_prices(api_token, business_id, offers, campaignId):
     """
     Обновляет цены на маркетплейсе Яндекса партиями.
 
+    :param campaignId: int - ID магазина
     :param api_token: str - API ключ.
     :param business_id: int - ID бизнеса.
     :param offers: list - Список товаров.
     :return: list - Ответы API по партиям.
     """
-    url = f"https://api.partner.market.yandex.ru/businesses/{business_id}/offer-prices/updates"
+    #url = f"https://api.partner.market.yandex.ru/businesses/{business_id}/offer-prices/updates" # для кабинета
+    url = f"https://api.partner.market.yandex.ru/campaigns/{campaignId}/offer-prices/updates" # для магазина
     headers = {
         'Api-Key': api_token,
         'Accept': 'application/json',
@@ -194,7 +196,7 @@ def update_prices(api_token, business_id, offers):
 
 def start_exchange_price():
     offers = prepare_offers_data(OFFERS_FILE, MARKUP_FILE)
-    update_prices(API_TOKEN, BUSINESS_ID, offers)
+    update_prices(API_TOKEN, BUSINESS_ID, offers, CAMPAIGN_ID)
 
 
 if __name__ == "__main__":
